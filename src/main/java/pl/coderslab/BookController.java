@@ -30,7 +30,15 @@ public class BookController {
         }
     }
 
-    // Zwraca listę wszystkich książek.
+    @PutMapping
+    public void updateBook(@RequestBody Book book) {
+        if (getBookById(book.getId()) != null) {
+            mockBookService.updateBook(book);
+        } else {
+            throw new RestClientException("There is no book with ID: " + book.getId());
+        }
+    }
+
     @GetMapping
     public List<Book> getAllBooks() {
         return mockBookService.getAllBooksList();

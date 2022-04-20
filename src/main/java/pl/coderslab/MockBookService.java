@@ -43,7 +43,12 @@ public class MockBookService {
         nextId++;
     }
 
-//    Edycje obiektu.
+//    Edycja obiektu po zadanym id.
+    public void updateBook(Book book) {
+            int bookIndex = list.indexOf(getBookById(book.getId()));
+            list.set(bookIndex, book);
+    }
+
 //    Usuwanie obiektu.
 
 }
