@@ -22,10 +22,20 @@ public class MockBookService {
     }
 
     //    Pobieranie listy wszystkich książek
-    public List<Book> getList() {
+    public List<Book> getAllBooksList() {
         return list;
     }
+
 //    Pobieranie obiektu po wskazanym identyfikatorze.
+    public Book getBookById (long id) {
+        for (Book book : list) {
+            if (book.getId() == id) {
+                return book;
+            }
+        }
+        return null;
+    }
+
 //    Edycje obiektu.
 //    Usuwanie obiektu.
 

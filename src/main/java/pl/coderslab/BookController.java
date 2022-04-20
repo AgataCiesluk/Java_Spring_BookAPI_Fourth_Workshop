@@ -28,7 +28,12 @@ public class BookController {
     // Zwraca listę wszystkich książek.
     @GetMapping
     public List<Book> getAllBooks() {
-        return mockBookService.getList();
+        return mockBookService.getAllBooksList();
+    }
+
+    @GetMapping("/{id}")
+    public Book getBookById(@PathVariable long id) {
+        return mockBookService.getBookById(id);
     }
 
 
