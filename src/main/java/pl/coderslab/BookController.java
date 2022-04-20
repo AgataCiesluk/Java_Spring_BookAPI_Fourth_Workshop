@@ -1,6 +1,7 @@
 package pl.coderslab;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
@@ -20,9 +21,13 @@ public class BookController {
                 "Bruce Eckel", "Helion", "programming");
     }
 
-    @PostMapping("/books")
+    @PostMapping
     public void addBook(@RequestBody Book book){
-        // operacje na obiekcie book
+        if (book.getTitle() == null) {
+            throw new RestClientException("Title is missing");
+        } else {
+            mockBookService.addNewBook(book);
+        }
     }
 
     // Zwraca listę wszystkich książek.

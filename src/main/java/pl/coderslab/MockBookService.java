@@ -10,7 +10,7 @@ public class MockBookService {
 
     private List<Book> list;
 
-    private static Long nextId = 4L; // W metodzie która będzie dodawała powinniśmy dodatkowo zwiększać wartość tej zmiennej.
+    private static Long nextId = 4L;
 
     public MockBookService() {
         list = new ArrayList<>();
@@ -34,6 +34,13 @@ public class MockBookService {
             }
         }
         return null;
+    }
+
+    // Dodawanie ksiazki
+    public void addNewBook(Book book) {
+        book.setId(nextId);
+        list.add(book);
+        nextId++;
     }
 
 //    Edycje obiektu.
