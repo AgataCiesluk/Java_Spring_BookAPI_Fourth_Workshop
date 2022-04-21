@@ -1,7 +1,9 @@
 package pl.coderslab;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -9,10 +11,10 @@ import java.util.List;
 @RequestMapping("/books")
 public class BookController {
 
-    private final MockBookService mockBookService;
+    private final BookService bookService;
 
-    public BookController(MockBookService mockBookService) {
-        this.mockBookService = mockBookService;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @RequestMapping("/helloBook")
@@ -26,14 +28,14 @@ public class BookController {
         if (book.getTitle() == null) {
             throw new RestClientException("Title is missing");
         } else {
-            mockBookService.addNewBook(book);
+            bookService.addNewBook(book);
         }
     }
 
     @PutMapping
     public void updateBook(@RequestBody Book book) {
         if (getBookById(book.getId()) != null) {
-            mockBookService.updateBook(book);
+            bookService.updateBook(book);
         } else {
             throw new RestClientException("There is no book with ID: " + book.getId());
         }
@@ -41,17 +43,21 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     public void deleteBookById(@PathVariable long id) {
-        mockBookService.deleteBookById(id);
+        bookService.deleteBookById(id);
     }
 
     @GetMapping
     public List<Book> getAllBooks() {
-        return mockBookService.getAllBooksList();
+        return bookService.getBooks();
     }
 
     @GetMapping("/{id}")
     public Book getBookById(@PathVariable long id) {
-        return mockBookService.getBookById(id);
+        return this.bookService.getBookById(id).orElseThrow(() -> {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "entity not found"
+            );
+        });
     }
 
 

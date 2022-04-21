@@ -4,9 +4,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
-public class MockBookService {
+public class MockBookService implements BookService{
 
     private List<Book> list;
 
@@ -21,38 +22,37 @@ public class MockBookService {
                 "programming"));
     }
 
-    //    Pobieranie listy wszystkich książek
-    public List<Book> getAllBooksList() {
+    @Override
+    public List<Book> getBooks() {
         return list;
     }
 
-//    Pobieranie obiektu po wskazanym identyfikatorze.
-    public Book getBookById (long id) {
-        for (Book book : list) {
-            if (book.getId() == id) {
-                return book;
-            }
-        }
-        return null;
+    @Override
+    public Optional<Book> getBookById (long id) {
+        return list.stream()
+                .filter(book -> book.getId() == id)
+                .findFirst();
     }
 
-    // Dodawanie ksiazki
+    @Override
     public void addNewBook(Book book) {
-        book.setId(nextId);
+        book.setId(nextId++);
         list.add(book);
-        nextId++;
     }
 
-//    Edycja obiektu po zadanym id.
+    @Override
     public void updateBook(Book book) {
-            int bookIndex = list.indexOf(getBookById(book.getId()));
-            list.set(bookIndex, book);
+            if (getBookById(book.getId()).isPresent()) {
+                int bookIndex = list.indexOf(getBookById(book.getId()).get());
+                list.set(bookIndex, book);
+            }
     }
 
-//    Usuwanie obiektu.
+    @Override
     public void deleteBookById(long id) {
-        Book bookToDelete = getBookById(id);
-        list.remove(bookToDelete);
+        if (getBookById(id).isPresent()) {
+            list.remove(this.getBookById(id).get());
+        }
     }
 
 }
