@@ -39,6 +39,11 @@ public class BookController {
         }
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteBookById(@PathVariable long id) {
+        mockBookService.deleteBookById(id);
+    }
+
     @GetMapping
     public List<Book> getAllBooks() {
         return mockBookService.getAllBooksList();

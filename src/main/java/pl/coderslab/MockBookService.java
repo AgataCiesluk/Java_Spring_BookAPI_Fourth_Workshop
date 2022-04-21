@@ -50,5 +50,9 @@ public class MockBookService {
     }
 
 //    Usuwanie obiektu.
+    public void deleteBookById(long id) {
+        Book bookToDelete = getBookById(id);
+        list.remove(bookToDelete);
+    }
 
 }
