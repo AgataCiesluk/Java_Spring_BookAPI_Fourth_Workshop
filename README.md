@@ -10,11 +10,11 @@ Whole code is based on Spring MVC framework (Java). In the future, project can b
 
 |HTTP Method	  |URL	                               |Expected action|
 |---------------|------------------------------------|----------------|
-|GET	          |```http://localhost:8080/books```	       |Returns ```List<Book>``` that contains all books.|
-|POST	          |```http://localhost:8080/books```	       |Creates new Book from given information (can be testes with cURL).|
-|GET	          |```http://localhost:8080/books/{id}```	   |Shows info about book with given id.|
-|PUT	          |```http://localhost:8080/books```	       |Changes info about the book with given id.|
-|DELETE	        |```http://localhost:8080/books/{id}```	   |Removes book with given id from the ```List<Book>```.|
+|GET	          |```http://localhost:8080/books```	       |Returns ```List<Book>``` that contains all books (can be tested in web browser).|
+|POST	          |```http://localhost:8080/books```	       |Creates new Book from given information (can be tested with cURL).|
+|GET	          |```http://localhost:8080/books/{id}```	   |Shows info about book with given id (can be tested in web browser).|
+|PUT	          |```http://localhost:8080/books```	       |Changes info about the book with given id (can be tested with cURL).|
+|DELETE	        |```http://localhost:8080/books/{id}```	   |Removes book with given id from the ```List<Book>``` (can be tested with cURL).|
 
 ## Testing:
 1. GET methods can be tested directly in web browser by using one of above URL address dedicated to GET method.
