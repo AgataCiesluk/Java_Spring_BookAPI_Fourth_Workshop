@@ -20,7 +20,18 @@ Whole code is based on Spring MVC framework (Java). In the future, project can b
 1. GET methods can be tested directly in web browser by using one of above URL address dedicated to GET method.
 2. POST, PUT and DELETE can be tested by using below exemplary cURLs (for example in Postman or in your terminal):
 - POST:<br>
-```curl -X POST -i -H "Content-Type: application/json" -d '{"isbn":"34321","title":"Thinking in Java", "publisher":"Helion","type":"programming", "author":"Bruce Eckel"}' http://localhost:8080/books```
+```curl -X POST -i -H "Content-Type: application/json" -d '{"isbn":"34321","title":"Thinking in Java", "publisher":"Helion","type":"programming", "author":"Bruce Eckel"}' http://localhost:8080/books```<br><br>
+Created object Book:<br>
+```
+{
+id: 4,
+isbn: "34321",
+title: "Thinking in Java",
+author: "Bruce Eckel",
+publisher: "Helion",
+type: "programming"
+}
+```
 - PUT:<br>
 ```curl -X PUT -i -H "Content-Type: application/json" -d   '{"id":1,"isbn":"32222","title":"Thinking in C#",  "publisher":"IT Books","type":"programming", "author":"Bruce Eckel"}' http://localhost:8080/books```
 - DELETE:<br>
