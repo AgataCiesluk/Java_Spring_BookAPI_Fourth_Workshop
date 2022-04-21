@@ -5,7 +5,7 @@ In this workshop I've created Book API to maintain books added to ```List<Book>`
 
 To start the app you will need to run Tomcat and install cURL.<br>
 
-Whole code is based on Spring MVC framework (Java). In the future project can be developed to use MySQL instead of ```List<Book>```.
+Whole code is based on Spring MVC framework (Java). In the future, project can be developed to use MySQL instead of ```List<Book>```.
 
 
 |HTTP Method	  |URL	                               |Expected action|
