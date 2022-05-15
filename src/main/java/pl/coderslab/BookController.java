@@ -17,11 +17,11 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @RequestMapping("/helloBook")
-    public Book helloBook() {
-        return new Book(1L, "9788324631766", "Thinking in Java",
-                "Bruce Eckel", "Helion", "programming");
-    }
+//    @RequestMapping("/helloBook")
+//    public Book helloBook() {
+//        return new Book(1L, "9788324631766", "Thinking in Java",
+//                "Bruce Eckel", "Helion", "programming");
+//    }
 
     @PostMapping
     public void addBook(@RequestBody Book book){
