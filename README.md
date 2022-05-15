@@ -37,4 +37,4 @@ type: "programming"
 - DELETE:<br>
 ```curl -X DELETE -i  http://localhost:8080/books/1```
 
-### 05/15/2022 App Update - Hibernate implementation:
+### 05/15/2022 App Update - Hibernate and Spring Data JPA implementation:
