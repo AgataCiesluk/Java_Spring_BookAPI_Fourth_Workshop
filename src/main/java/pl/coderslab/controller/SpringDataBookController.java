@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.Book;
 import pl.coderslab.BookService;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -81,7 +82,7 @@ public class SpringDataBookController {
 
     @GetMapping("/show-book/{id}")
     public String showOneBook(@PathVariable long id, Model model) {
-        model.addAttribute("book", bookService.getBookById(id).get());
+        model.addAttribute("book", bookService.getBookById(id).orElseThrow(EntityNotFoundException::new));
         return "bookShowInfo";
     }
 }

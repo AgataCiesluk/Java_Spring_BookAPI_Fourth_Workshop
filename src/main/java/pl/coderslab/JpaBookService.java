@@ -33,13 +33,7 @@ public class JpaBookService implements BookService{
 
     @Override
     public void updateBook(Book book) {
-        Book bookToUpdate = bookRepository.findById(book.getId()).orElseThrow();
-        bookToUpdate.setIsbn(book.getIsbn());
-        bookToUpdate.setTitle(book.getTitle());
-        bookToUpdate.setAuthor(book.getAuthor());
-        bookToUpdate.setPublisher(book.getPublisher());
-        bookToUpdate.setType(book.getType());
-        bookRepository.save(bookToUpdate);
+        bookRepository.save(book);
     }
 
     @Override
