@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -15,10 +17,22 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Size(max = 70)
     private String isbn;
+
+    @NotNull
+    @Size(max = 70)
     private String title;
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String author;
+
+    @Size(min = 2, max = 50)
     private String publisher;
+
+    @NotNull
+    @Size(min = 2, max = 50)
     private String type;
 
 //    public Book() {
