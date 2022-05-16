@@ -27,8 +27,9 @@
             <td><c:out value="${book.title}"/></td>
             <td><c:out value="${book.author}"/></td>
             <td>
-                <a href="/admin/books/delete-confirm?id=${book.id}">Delete Book</a><br> /
-                /Update/ <a href="/admin/books/show-book/${book.id}">Show Info</a>
+                <a href="/admin/books/delete-confirm?id=${book.id}">Delete</a>
+                <a href="/admin/books/update?id=${book.id}">Update</a>
+                <a href="/admin/books/show-book/${book.id}">Show Info</a>
             </td>
         </tr>
     </c:forEach>

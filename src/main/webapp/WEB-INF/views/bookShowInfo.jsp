@@ -12,6 +12,7 @@
     <title>Book info</title>
 </head>
 <body>
+ID: ${book.id}<br>
 Title: ${book.title}<br>
 ISBN: ${book.isbn}<br>
 Author: ${book.author}<br>

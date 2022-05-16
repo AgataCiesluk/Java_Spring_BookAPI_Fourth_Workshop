@@ -23,6 +23,7 @@ public class SpringDataBookController {
     @GetMapping("/all")
     public String showBooks(Model model) {
         List<Book> books = bookService.getBooks();
+        log.info("List has {} elements.", books.size());
         model.addAttribute("books", books);
         return "allBooks";
     }
@@ -39,10 +40,31 @@ public class SpringDataBookController {
             return "bookForm-add";
         }
         bookService.addNewBook(book);
+        log.info("Book with ID: {} has been added.", book.getId());
         return "redirect:http://localhost:8080/admin/books/all";
     }
 
     //edycję książki
+    @GetMapping("/update")
+    public String updateBookWithForm(@RequestParam long id, Model model) {
+        model.addAttribute("bookToUpdate", bookService.getBookById(id).get());
+        return "bookForm-update";
+    }
+
+    @PostMapping("/update")
+    public String updateBook(@ModelAttribute("bookToUpdate") @Valid Book book, BindingResult result) {
+        if (result.hasErrors()) {
+            return "bookForm-update";
+        }
+        Book bookToUpdate = bookService.getBookById(book.getId()).get();
+        bookToUpdate.setIsbn(book.getIsbn());
+        bookToUpdate.setType(book.getType());
+        bookToUpdate.setPublisher(book.getPublisher());
+        bookToUpdate.setAuthor(book.getAuthor());
+        bookService.updateBook(bookToUpdate);
+        log.info("Book with ID: {} has been updated.", bookToUpdate.getId());
+        return "redirect:http://localhost:8080/admin/books/all";
+    }
 
     @GetMapping("/delete-confirm")
     public String deleteBookByIdConfirm(@RequestParam long id, Model model) {
@@ -53,10 +75,10 @@ public class SpringDataBookController {
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable long id) {
         bookService.deleteBookById(id);
+        log.info("Book with ID: {} has been deleted.", id);
         return "redirect:http://localhost:8080/admin/books/all";
     }
 
-    //wyświetlanie pojedynczej książki
     @GetMapping("/show-book/{id}")
     public String showOneBook(@PathVariable long id, Model model) {
         model.addAttribute("book", bookService.getBookById(id).get());
