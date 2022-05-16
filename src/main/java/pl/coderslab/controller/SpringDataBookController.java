@@ -42,8 +42,8 @@ public class SpringDataBookController {
         return "redirect:http://localhost:8080/admin/books/all";
     }
 
-    //edycję książki,
-    //usuwanie książki
+    //edycję książki
+
     @GetMapping("/delete-confirm")
     public String deleteBookByIdConfirm(@RequestParam long id, Model model) {
         model.addAttribute("bookToDelete", bookService.getBookById(id).get());
@@ -56,5 +56,10 @@ public class SpringDataBookController {
         return "redirect:http://localhost:8080/admin/books/all";
     }
 
-    //wyświetlanie pojedynczej książki.
+    //wyświetlanie pojedynczej książki
+    @GetMapping("/show-book/{id}")
+    public String showOneBook(@PathVariable long id, Model model) {
+        model.addAttribute("book", bookService.getBookById(id).get());
+        return "bookShowInfo";
+    }
 }

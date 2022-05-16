@@ -26,5 +26,6 @@
     <form:errors path="type" cssClass="error"/><br>
     <input type="submit"><br>
 </form:form>
+<p><a href="/admin/books/all">Show all</a></p>
 </body>
 </html>
